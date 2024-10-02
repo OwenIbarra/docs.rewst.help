@@ -329,19 +329,21 @@ Here are some important keyboard shortcuts you can use throughout
 1. **Uncomment** and **Render** the following:
 
 {% code overflow="wrap" %}
-```
+```django
+{%- set milky_days = [
+        weekday
+        for weekday in CTX.days
+        if "milk" in weekday.lunch.drink | lower
+    ]
+-%}
+
+{% raw %}
+{%- for weekday in milky_days -%}
+{% endraw %}
+
+On {{ weekday.day }} you should bring a frosty RewstyCola for lunch at {{ weekday.lunch.time }} because they are serving {{ weekday.lunch.drink | lower }}.
 ```
 {% endcode %}
-
-\`\`\`django \{%- set milky\_days = \[ weekday for weekday in CTX.days if "milk" in weekday.lunch.drink | lower ] -%\}
-
-\{%- for weekday in milky\_days -%\}
-
-On \{{ weekday.day \}} you should bring a frosty RewstyCola for lunch at \{{ weekday.lunch.time \}} because they are serving \{{ weekday.lunch.drink | lower \}}.
-
-````
-
-</div>
 
 2. **Review** the output.
 3. **Re-add** the comments.
